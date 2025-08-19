@@ -21,11 +21,15 @@ def test_parse_command_empty_quotes():
         parse_command('list "" +123')
         assert False, "Должно быть исключение"
     except Exception as e:
-        assert str(e) == "2рой аргумент - пустая строка / неправильный аргумент"
+        assert str(e) == "неправильные аргументы"
 
 def test_parse_command_multiple_words_no_quotes():
     """Тест с несколькими словами без кавычек"""
-    assert parse_command('search john doe smith') == ('search', ('john', 'doe', 'smith'))
+    try:
+        parse_command('search john doe smith')
+        assert False, "Должно быть исключение"
+    except Exception as e:
+        assert str(e) == "в команде слишком много аргументов"
 
 def test_parse_command_single_argument():
     """Тест с одной командой и одним аргументом"""
