@@ -1,4 +1,5 @@
 from utils import parse_command
+from data_utils import set_contact_to_data
 
 if __name__ == "__main__":
 
@@ -12,8 +13,9 @@ if __name__ == "__main__":
 
                 if command_name == "list":
                     pass
-                elif command_name == "new":
-                    pass
+                elif command_name == "add":
+                    print(*command_param)
+                    set_contact_to_data(*command_param)
                 elif command_name == "exit":
                     print("exit program")
                 else:
