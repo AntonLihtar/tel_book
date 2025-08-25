@@ -23,54 +23,60 @@ list
 file_path = Path('data') / 'data.json'
 
 
-def get_data() -> dict | None:
+def get_data() -> dict: # ✅
     """
-    Возвращает обьект с данными из файла
+    Возвращает обьект с данными из файла - при ошибке возвращаем пустой словарь
     """
     if file_path.exists():
         with open(file_path, 'r', encoding='utf-8') as f:
             return json.load(f)
+    print('файл не существует')
+    return {}
 
 
-# todo: убрать
-def get_contacts() -> list | None:
+def get_contacts() -> list: # ✅
     """
     Возвращает список ключей
     """
-    data_dict = get_data()
-    return list(data_dict.keys())
+    data = get_data()
+    return list(data.keys())
 
 
 def get_contact(name: str) -> str | None:
     """
     Возвращает номер по имени или None
     """
-    data_dict = get_data()
-    return data_dict.get(name)
+    data = get_data()
+    return data.get(name)
 
 
-def print_contacts():
+def print_contacts(): # ✅
     """
     Выводим ключи списка
     """
-    data_list = get_contacts()
-    for x in data_list:
-        print(x)
+    keys_list = get_contacts()
+    if len(keys_list) == 0:
+        print('словарь пуст')
+        return
+    for i, contact in enumerate(keys_list, 1):
+        print(f"{i}. {contact}")
 
 
-def set_contact_to_data(contact, value) -> bool:
+def set_contact_to_data(contact, value) -> bool: # ✅
     """
-    добавим ключ
+    Добавляем контакт в данные
     """
-    data = get_data() | {}  # получаем дату
-
+    data = get_data()
     data[contact] = str(value)
 
-    if file_path.exists():
+    try:
+        # Всегда пытаемся записать файл (создастся, если не существует)
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
             return True
-    return False
+    except Exception as e:
+        print(f"Ошибка при записи файла: {e}")
+        return False
 
 
 if __name__ == "__main__":

@@ -16,10 +16,10 @@
 
 def parse_command(command: str) -> tuple:
     command = command.strip()
-    if command == 'exit' or command == 'list':
+    if command in ['exit', 'list']:
         return command, None
 
-    if "'"  in command:
+    if "'" in command:
         raise Exception("недопустимые символы")
 
     if '"' in command:
