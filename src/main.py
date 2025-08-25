@@ -1,5 +1,5 @@
 from utils import parse_command
-from data_utils import set_contact_to_data, get_contacts, print_contacts, get_contact
+from data_utils import set_contact_to_data, handle_list_command
 
 
 def while_program():
@@ -18,13 +18,7 @@ def while_program():
                 break
 
             elif command == "list":
-                if param:
-                    value = get_contact(param[0])
-                    print(value or 'Такого контакта не существует')
-                else:
-                    print('Показать все контакты:')
-                    print(get_contacts() or 'контактов нет')  # посмотреть массив контактов
-                    # print_contacts() # вывести в столбец контактов
+                handle_list_command(param)
 
             elif command == "add":
                 print('24 ', *param)

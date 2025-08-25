@@ -23,7 +23,7 @@ list
 file_path = Path('data') / 'data.json'
 
 
-def get_data() -> dict: # ✅
+def get_data() -> dict:  # ✅
     """
     Возвращает обьект с данными из файла - при ошибке возвращаем пустой словарь
     """
@@ -34,35 +34,24 @@ def get_data() -> dict: # ✅
     return {}
 
 
-def get_contacts() -> list: # ✅
-    """
-    Возвращает список ключей
-    """
+def handle_list_command(params: str | None):
     data = get_data()
-    return list(data.keys())
+    if params:
+        value = data.get(params[0])
+        if value:
+            print(f"{params[0]}: {value}")
+        else:
+            print('Такого контакта не существует')
+    else:
+        contacts = list(data.keys())
+        if contacts:
+            print('Все контакты:')
+            for i, contact in enumerate(contacts, 1):
+                print(f"{i}. {contact}")
+        else:
+            print('Контактов нет')
 
-
-def get_contact(name: str) -> str | None:
-    """
-    Возвращает номер по имени или None
-    """
-    data = get_data()
-    return data.get(name)
-
-
-def print_contacts(): # ✅
-    """
-    Выводим ключи списка
-    """
-    keys_list = get_contacts()
-    if len(keys_list) == 0:
-        print('словарь пуст')
-        return
-    for i, contact in enumerate(keys_list, 1):
-        print(f"{i}. {contact}")
-
-
-def set_contact_to_data(contact, value) -> bool: # ✅
+def set_contact_to_data(contact, value) -> bool:  # ✅
     """
     Добавляем контакт в данные
     """
@@ -86,4 +75,4 @@ if __name__ == "__main__":
     #
     # print(set_contact_to_data('Jack', 999))
 
-    print(get_contact('ss'))
+    print(handle_list_command('ss'))
