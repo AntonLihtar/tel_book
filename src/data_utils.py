@@ -30,22 +30,30 @@ def get_data() -> dict | None:
     if file_path.exists():
         with open(file_path, 'r', encoding='utf-8') as f:
             return json.load(f)
-    return None
 
 
 # todo: убрать
-def get_contacts(data_dict) -> list | None:
+def get_contacts() -> list | None:
     """
     Возвращает список ключей
     """
+    data_dict = get_data()
     return list(data_dict.keys())
 
 
-# todo: убрать
-def print_contacts(data_list) -> None:
+def get_contact(name: str) -> str | None:
+    """
+    Возвращает номер по имени или None
+    """
+    data_dict = get_data()
+    return data_dict.get(name)
+
+
+def print_contacts():
     """
     Выводим ключи списка
     """
+    data_list = get_contacts()
     for x in data_list:
         print(x)
 
@@ -54,11 +62,9 @@ def set_contact_to_data(contact, value) -> bool:
     """
     добавим ключ
     """
-    data = get_data()  # получаем дату
-    if data is None:
-        data = {}
+    data = get_data() | {}  # получаем дату
 
-    data[contact] = value
+    data[contact] = str(value)
 
     if file_path.exists():
         with open(file_path, 'w', encoding='utf-8') as f:
@@ -68,9 +74,10 @@ def set_contact_to_data(contact, value) -> bool:
 
 
 if __name__ == "__main__":
-    print('ut file_path --', file_path)
-    print(get_data())
-    print(file_path.is_absolute())
+    # print('ut file_path --', file_path)
+    # print(get_data())
+    # print(file_path.is_absolute())
+    #
+    # print(set_contact_to_data('Jack', 999))
 
-    print(set_contact_to_data('Jack', 999))
-    print(set_contact_to_data('Igor', 8787878))
+    print(get_contact('ss'))

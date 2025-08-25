@@ -1,6 +1,23 @@
+"""
+принимаем строку
+ответ может быть 3 варианта
+
+команда
+
+команда + имя *фамилия
+
+команда + имя *фамилия + номер
+
+возвращаем
+команда + параметры
+
+"""
+
+
 def parse_command(command: str) -> tuple:
-    if command == 'exit':
-        return 'exit', ('',)
+    command = command.strip()
+    if command == 'exit' or command == 'list':
+        return command, None
 
     if "'"  in command:
         raise Exception("недопустимые символы")
