@@ -1,7 +1,7 @@
 from data.data_utils import get_data
 
 
-def handle_list_command(data: dict, params: str | None) -> str:
+def handle_list_command(data: dict, params: tuple | None = None) -> str: # ✅ + test
     """
     Обрабатывает команду list и возвращает результат как строку
     """
@@ -24,7 +24,7 @@ def handle_list_command(data: dict, params: str | None) -> str:
 
 
 # Отдельная функция для печати
-def print_list_command(params: str | None):
+def print_list_command(params: str | None = None):
     data = get_data()
     """Печатает результат handle_list_command"""
     result = handle_list_command(data, params)
@@ -32,4 +32,4 @@ def print_list_command(params: str | None):
 
 
 if __name__ == "__main__":
-    print(print_list_command(('anton',)))
+    print(print_list_command())

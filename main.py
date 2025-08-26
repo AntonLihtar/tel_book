@@ -1,4 +1,4 @@
-from commands.parser import parse_command
+from utils.parser import parse_command
 from commands.list import print_list_command
 
 
@@ -18,7 +18,7 @@ def while_program():
                 break
 
             elif command == "list":
-                print_list_command(param)
+                print_list_command(param) # ✅ + test
 
             elif command == "add":
                 print('24 ', *param)
