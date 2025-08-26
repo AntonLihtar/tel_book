@@ -14,7 +14,7 @@
 """
 
 
-def parse_command(command: str) -> tuple:
+def parse_command(command: str) -> tuple: # ✅ + test
     command = command.strip()
     if command in ['exit', 'list']:
         return command, None

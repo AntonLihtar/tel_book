@@ -35,21 +35,17 @@ def get_data() -> dict:  # ✅
     return {}
 
 
-def set_contact_to_data(contact, value) -> bool:  # ✅
+def set_data(data: dict):  # ✅
     """
-    Добавляем контакт в данные
+    записываем данные (json обьект) в файл
     """
-    data = get_data()
-    data[contact] = str(value)
-
     try:
         # Всегда пытаемся записать файл (создастся, если не существует)
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
-            return True
+            print('данные записаны')
     except Exception as e:
         print(f"Ошибка при записи файла: {e}")
-        return False
 
 if __name__ == "__main__":
         print(get_data())

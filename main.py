@@ -1,5 +1,6 @@
 from utils.parser import parse_command
 from commands.list import print_list_command
+from commands.add import add_contact_to_data
 
 
 def while_program():
@@ -10,10 +11,10 @@ def while_program():
             if not user_input:
                 continue
 
-            command, param = parse_command(user_input)
+            command, param = parse_command(user_input) # ✅ + test
             print(f"Command name = {command}, command_param = {param}")
 
-            if command == "exit":
+            if command == "exit": # ✅
                 print("Программа завершена")
                 break
 
@@ -21,8 +22,10 @@ def while_program():
                 print_list_command(param) # ✅ + test
 
             elif command == "add":
-                print('24 ', *param)
-                # print('add', set_contact_to_data(*param))
+                if len(param) == 2:
+                    add_contact_to_data(*param)
+                else:
+                    raise Exception("команда 'add' требует 2 аргумента")
 
             else:
                 print(f"Неизвестная команда: {command}")
