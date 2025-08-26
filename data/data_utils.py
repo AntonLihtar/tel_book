@@ -20,7 +20,8 @@ list
 
 """
 
-file_path = Path('data') / 'data.json'
+# Создаем путь относительно текущего файла - работает с любых способов запуска
+file_path = Path(__file__).parent / 'data.json'
 
 
 def get_data() -> dict:  # ✅
@@ -33,23 +34,6 @@ def get_data() -> dict:  # ✅
     print('файл не существует')
     return {}
 
-
-def handle_list_command(params: str | None):
-    data = get_data()
-    if params:
-        value = data.get(params[0])
-        if value:
-            print(f"{params[0]}: {value}")
-        else:
-            print('Такого контакта не существует')
-    else:
-        contacts = list(data.keys())
-        if contacts:
-            print('Все контакты:')
-            for i, contact in enumerate(contacts, 1):
-                print(f"{i}. {contact}")
-        else:
-            print('Контактов нет')
 
 def set_contact_to_data(contact, value) -> bool:  # ✅
     """
@@ -67,12 +51,5 @@ def set_contact_to_data(contact, value) -> bool:  # ✅
         print(f"Ошибка при записи файла: {e}")
         return False
 
-
 if __name__ == "__main__":
-    # print('ut file_path --', file_path)
-    # print(get_data())
-    # print(file_path.is_absolute())
-    #
-    # print(set_contact_to_data('Jack', 999))
-
-    print(handle_list_command('ss'))
+        print(get_data())

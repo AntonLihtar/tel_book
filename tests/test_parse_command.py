@@ -1,4 +1,4 @@
-from src.utils import parse_command
+from commands import parse_command
 
 def test_parse_command():
     # Тесты, которые у тебя уже есть

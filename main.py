@@ -1,5 +1,5 @@
-from utils import parse_command
-from data_utils import set_contact_to_data, handle_list_command
+from commands.parser import parse_command
+from commands.list import print_list_command
 
 
 def while_program():
@@ -18,11 +18,11 @@ def while_program():
                 break
 
             elif command == "list":
-                handle_list_command(param)
+                print_list_command(param)
 
             elif command == "add":
                 print('24 ', *param)
-                print('add', set_contact_to_data(*param))
+                # print('add', set_contact_to_data(*param))
 
             else:
                 print(f"Неизвестная команда: {command}")
@@ -33,28 +33,6 @@ def while_program():
 
         except Exception as e:
             print(f"Ошибка: {e}")
-
-
-# def while_program2():
-#     tests = [
-#         'list "john Smit" +79210008832',
-#         'add bill +79210008832',
-#         'delete "Albion Online"',
-#         'delete Thor',
-#         # 'delete ',
-#     ]
-#
-#     for el in tests:
-#         command_name, command_param = parse_command(el)
-#         if command_name == "list":
-#             pass
-#         elif command_name == "new":
-#             pass
-#         else:
-#             print("Unknown command")
-#         print(
-#             f"Command name = {command_name}, command_param = {command_param}")
-
 
 if __name__ == "__main__":
 
