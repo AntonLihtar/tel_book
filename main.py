@@ -19,14 +19,17 @@ def while_program():
                 print("Программа завершена")
                 break
 
-            elif command == "list":
-                print_list_command(param)  # ✅ + test
+            elif command == "list": # ✅ + test
+                print_list_command(param)
 
-            elif command == "add":
+            elif command == "add": # ✅ + test
                 if len(param) == 2:
                     add_contact_to_data(*param)
                 else:
                     raise Exception("команда 'add' требует 2 аргумента")
+
+            elif command == "find":
+                print('поиск')
 
             elif command == "delete":
                 delete_contact_to_data(param[0])
