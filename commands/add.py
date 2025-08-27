@@ -6,9 +6,14 @@ def add_contact_to_dict(data: dict, contact:str, value:str) -> dict:  # ✅
     Добавляем контакт в обьект - если есть - расширяем номера
     """
     if contact in data:
-        data[contact] = f'{data[contact]} {value}'
+        if value in data[contact]:
+            raise Exception("такой номером уже существует у контакта")
+        data[contact].append(value)
+        print(f'контакту "{contact}" добавлен номер "{value}"')
+
     else:
-        data[contact] = value
+        data[contact] = [value]
+        print(f'контакт "{contact}" с номером "{value}" добавлен')
     return data
 
 # Отдельная функция для печати

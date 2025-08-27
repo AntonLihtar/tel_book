@@ -43,7 +43,7 @@ def set_data(data: dict):  # ✅
         # Всегда пытаемся записать файл (создастся, если не существует)
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
-            print('данные записаны')
+            # print('данные записаны')
     except Exception as e:
         print(f"Ошибка при записи файла: {e}")
 
