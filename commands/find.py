@@ -1,28 +1,30 @@
-from data.data_utils import get_data, set_data
+from data.data_utils import get_data
 
 
-def find_contact(data: dict, contact:str, value:str) -> dict:  # ✅
+def find_contact(data: dict, value: str) -> list :  # ✅
     """
-    Добавляем контакт в обьект - если есть - расширяем номера
+    Ищем контакт в обьекте - возвратим массив контактов или пустой
     """
-    if contact in data:
-        if value in data[contact]:
-            raise Exception("такой номером уже существует у контакта")
-        data[contact].append(value)
-        print(f'контакту "{contact}" добавлен номер "{value}"')
-
-    else:
-        data[contact] = [value]
-        print(f'контакт "{contact}" с номером "{value}" добавлен')
-    return data
+    res = []
+    for k, v in data.items():
+        if v.find(value) != -1:
+            res.append((k, v))
+    return res
 
 # Отдельная функция для печати
-def find_contact_to_data(contact:str, value:str):
+def find_contact_to_data(value: str):
     """
     получаем данные - ищем контакт - найден - вывод - нет пишем
     """
     data = get_data()
-    data = add_contact_to_dict(data, contact, value)
+    res = find_contact(data, value)
+    if not res:
+        print('контакты с таким номером не найдены')
+    else:
+        print('найдено:')
+        for k, v  in res:
+            print(f'{k} :  {v}')
+
 
 if __name__ == "__main__":
-    add_contact_to_data('test', '123')
+    find_contact_to_data('32')

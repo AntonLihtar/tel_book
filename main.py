@@ -2,6 +2,7 @@ from utils.parser import parse_command
 from commands.list import print_list_command
 from commands.add import add_contact_to_data
 from commands.delete import delete_contact_to_data
+from commands.find import find_contact_to_data
 
 
 def while_program():
@@ -29,7 +30,10 @@ def while_program():
                     raise Exception("команда 'add' требует 2 аргумента")
 
             elif command == "find":
-                print('поиск')
+                if len(param) == 1:
+                    find_contact_to_data(param[0])
+                else:
+                    raise Exception("команда 'find' требует 1 аргумент")
 
             elif command == "delete":
                 delete_contact_to_data(param[0])
