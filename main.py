@@ -36,7 +36,10 @@ def while_program():
                     raise Exception("команда 'find' требует 1 аргумент")
 
             elif command == "merge":  # ✅ + test
-                pass
+                if len(param) == 1:
+                    find_contact_to_data(param[0])
+                else:
+                    raise Exception("команда 'merge' требует 1 аргумент")
 
             elif command == "delete":
                 delete_contact_to_data(param[0])

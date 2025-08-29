@@ -24,8 +24,11 @@ project_root = Path(__file__).parent.parent  # поднимаемся из data/
 
 
 def open_read_file(f_path: str):
-    f_path = project_root / f_path
+    """
+    Возвращает обьект с данными из файла по пути до файла
+    """
 
+    f_path = project_root / f_path
     # Проверяем расширение
     if f_path.suffix != '.json':
         raise ValueError(f"Файл должен иметь расширение .json, получено: {f_path.suffix}")

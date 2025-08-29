@@ -1,26 +1,32 @@
-from data.data_utils import get_data, set_data
+from data.data_utils import get_data, set_data, open_read_file
+
+"""
+читаем основной файл - получаем данные
+читаем доп - получаем данные 
+чекаем
+"""
 
 
-def add_contact_to_dict(data: dict, contact:str, value:str) -> dict:  # ✅
+def merge_dicts(data: dict, new_data: dict) -> dict:  # ✅
     """
-    Добавляем контакт в обьект - если есть - расширяем номера
+    обьединяем 2 обьекта
     """
-    if contact in data:
-        if value == data[contact]:
-            raise Exception("такой контакт уже существует")
-        else:
-            print(f'для контакта "{contact}" заменили номер на "{value}"')
-    data[contact] = value
-    print(f'контакт "{contact}" с номером "{value}" добавлен')
+    # for el in new_data:
+    #     if el in data:
+
+
     return data
 
 # Отдельная функция для печати
-def add_contact_to_data(contact:str, value:str):
+def merge_contacts(path: str):
     """
-    получаем данные - добавляем контакт и добавляем данные в файл
+    получаем ссылку - открываем - получаем данные
+    повторяем со 2рым файлом
+    отправляем на слияние обьектов
     """
+    dop_data = open_read_file(path)
     data = get_data()
-    data = add_contact_to_dict(data, contact, value)
+    data =
     set_data(data)
 
 if __name__ == "__main__":
