@@ -1,4 +1,5 @@
 from data.data_utils import get_data, set_data, open_read_file
+from commands.add import add_contact_to_dict
 
 """
 читаем основной файл - получаем данные
@@ -11,11 +12,15 @@ def merge_dicts(data: dict, new_data: dict) -> dict:  # ✅
     """
     обьединяем 2 обьекта
     """
-    # for el in new_data:
-    #     if el in data:
-
-
+    for key, value in new_data.items():
+        print(f'ele {key} {value}')
+        for number in value:
+            try:
+                data = add_contact_to_dict(data, key, number)
+            except Exception as e:
+                print(f"Ошибка добавления:{number} в {key} {e}")
     return data
+
 
 # Отдельная функция для печати
 def merge_contacts(path: str):
@@ -26,8 +31,9 @@ def merge_contacts(path: str):
     """
     dop_data = open_read_file(path)
     data = get_data()
-    data =
+    data = merge_dicts(data, dop_data)
     set_data(data)
 
+
 if __name__ == "__main__":
-    add_contact_to_data('test', '123')
+    merge_contacts('t2.json')

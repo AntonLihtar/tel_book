@@ -27,3 +27,8 @@ def add_contact_to_data(contact:str, value:str):
 
 if __name__ == "__main__":
     add_contact_to_data('test', '123')
+
+    o = {'a':1,  'b':2}
+    o2 = add_contact_to_dict(o, 'c', '3')
+    print(o2)
+    print(o==o2)
