@@ -6,9 +6,10 @@ def find_contact(data: dict, value: str) -> list :  # ✅
     Ищем контакт в обьекте - возвратим массив контактов или пустой
     """
     res = []
-    for k, v in data.items():
-        if v.find(value) != -1:
-            res.append((k, v))
+    for k, list_nums in data.items():
+        for el in  list_nums:
+            if el.find(value) != -1:
+                res.append((k, el))
     return res
 
 # Отдельная функция для печати
