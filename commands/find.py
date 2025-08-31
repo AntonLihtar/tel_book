@@ -8,7 +8,7 @@ def find_contact(data: dict, value: str) -> list :  # ✅
     res = []
     for k, list_nums in data.items():
         for el in  list_nums:
-            if el.find(value) != -1:
+            if value in el:
                 res.append((k, el))
     return res
 
